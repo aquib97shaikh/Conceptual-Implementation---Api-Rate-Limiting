@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const clearCache = () =>{
     cache.count = 5;
+    cache.id = null;
 }
 // your code goes here
 app.get("/api/posts",async (req,res) =>{
