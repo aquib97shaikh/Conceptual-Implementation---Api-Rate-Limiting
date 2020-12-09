@@ -19,6 +19,7 @@ const clearCache = () =>{
 // your code goes here
 app.get("/api/posts",async (req,res) =>{
     let limit = req.query.max == undefined ? 10 : req.query.max;
+    limit = limit>20 ? 10 : limit;
     console.log(limit);
     if(cache.count >0){
         if(cache.id===null){
