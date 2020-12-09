@@ -29,6 +29,10 @@ app.get("/api/posts",async (req,res) =>{
         res.send(post.slice(start,limit+start));
         cache.start = limit + start;
         cache.count = cache.count - 1;
+    }else{
+        res.status(429).send({
+            message:"Exceed Number of API Calls",
+        })
     }
     
     
