@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const post = require("./initialData");
 const port = 3000
 app.use(express.urlencoded());
-let cache = {id:null,maxId:10,count:5,start:0};
+let cache = {id:null,maxId:10,count:5};
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
@@ -25,9 +25,7 @@ app.get("/api/posts",async (req,res) =>{
             cache.maxId = limit;
         }
         limit = Math.min(cache.maxId,limit);
-        start = cache.start;
-        res.send(post.slice(start,limit+start));
-        cache.start = limit + start;
+        res.send(post.slice(0,limit));
         cache.count = cache.count - 1;
     }else{
         res.status(429).send({
